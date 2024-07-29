@@ -1,0 +1,26 @@
+CREATE TABLE Human (
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(50),
+dob DATE,
+address VARCHAR(100),
+phone VARCHAR(20)
+);
+
+CREATE TABLE User (
+id INT PRIMARY KEY AUTO_INCREMENT,
+humanid INT,
+employee_code VARCHAR(20),
+username VARCHAR(20),
+password VARCHAR(50),
+role VARCHAR(20),
+FOREIGN KEY (humanid) REFERENCES Human(id)
+);
+
+CREATE TABLE WorkHour (
+id INT PRIMARY KEY AUTO_INCREMENT,
+start DATETIME,
+end DATETIME,
+userid INT,
+status VARCHAR(20),
+FOREIGN KEY (userid) REFERENCES User(id)
+);

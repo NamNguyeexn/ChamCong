@@ -1,0 +1,34 @@
+logging:
+  level:
+    com.example: debug
+#  file: app.log
+  logback:
+    level:
+      root: warn
+    file: app.log
+      #Cấu hình xoá log sau mỗi 3 ngày
+    timeBasedFileNamingAndTriggeringPolicy:
+      maxHistory: 7
+      timeBasedFileNamingAndTriggeringPolicy:
+        timeBasedRollingPolicy:
+          maxFileSize: "20MB"
+          filePattern: app_%d{yyyy-MM-dd}.log
+          maxHistory: 30
+
+    #Cấu hình giới hạn kích thước tổng đĩa dành cho lưu trữ log
+    appender:
+      file:
+        fileName: app.log
+        filePattern: app-%d{yyyy-MM-dd}-%i.log
+        archive: archived/app-%d{yyyy-MM-dd}-%i.log.zip
+        archiveAppend: true
+        compress: true
+        totalSizeCap: 10GB #giới hạn kích thước tổng
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+swagger:
+  title: My API
